@@ -29,9 +29,9 @@ def send_request(location, radius, keyword, category, pagetoken=None):
         raw_data = json.loads(response.content)
 
     else:
-        print((
+        print(
             'Something went wrong. Error code: {}'.format(
-                response.status_code)))
+                response.status_code))
         exit
 
     return raw_data
@@ -66,14 +66,14 @@ def geo_locate_this():
                     category_place_2,
                     blank_pagetoken)
                 if 'ZERO_RESULTS' not in place_2_data['status']:
-                    print((
+                    print(
                         "Found match at {} (location: {})".format(
-                            temp_name, temp_location)))
+                            temp_name, temp_location))
                     match_count += 1
 
             if 'next_page_token' not in place_1_data:
-                print((
-                    'Done. Found {} locations matching given criteria.'.format(match_count)))
+                print(
+                    'Done. Found {} locations matching given criteria.'.format(match_count))
                 break
 
             else:
@@ -104,17 +104,17 @@ print()
 
 
 print('Define center point of searched area.')
-lat = eval(input('[+]Latitude: '))
-lon = eval(input('[+]Longtitude: '))
+lat = input('[+]Latitude: ')
+lon = input('[+]Longtitude: ')
 center_point = ('{},{}'.format(lat, lon))
-radius = eval(input(
-    "[+]Search radius from above given coordinates [in metres, max. 50000]: "))
+radius = input(
+    "[+]Search radius from above given coordinates [in metres, max. 50000]: ")
 
-keyword_place_1 = eval(input("[+]Keyword for place 1: "))
+keyword_place_1 = input("[+]Keyword for place 1: ")
 
 while True:
-    category_place_1 = eval(input(
-        "[Optional] Choose category for place 1 to narrow search. Type 'help' for complete list of allowed categories [enter for None]: "))
+    category_place_1 = input(
+        "[Optional] Choose category for place 1 to narrow search. Type 'help' for complete list of allowed categories [enter for None]: ")
     if category_place_1 == 'help':
         print(place_types)
     elif category_place_1 == "":
@@ -125,11 +125,11 @@ while True:
         break
 
 
-keyword_place_2 = eval(input("[+]Keyword for place 2: "))
+keyword_place_2 = input("[+]Keyword for place 2: ")
 
 while True:
-    category_place_2 = eval(input(
-        "[Optional] Choose category for place 2 to narrow search. Type 'help' for complete list of allowed categories [enter for None]: "))
+    category_place_2 = input(
+        "[Optional] Choose category for place 2 to narrow search. Type 'help' for complete list of allowed categories [enter for None]: ")
     if category_place_2 == 'help':
         print(place_types)
     elif category_place_2 == "":
@@ -139,6 +139,6 @@ while True:
     else:
         break
 
-distance = eval(input("[+]Distance beetwen place 1 and place 2 [m]: "))
+distance = input("[+]Distance beetwen place 1 and place 2 [m]: ")
 print('searching...')
 geo_locate_this()
